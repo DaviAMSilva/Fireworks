@@ -15,17 +15,17 @@ int main(void)
     start_color();
     curs_set(0);
 
-    init_pair(COLOR_WHITE, COLOR_WHITE, COLOR_BLACK);
+    init_pair(WHITE, COLOR_WHITE, COLOR_BLACK);
 
-    rocket_t rocket = CreateRocket(NUM_TRAILS, COLOR_WHITE, 1, (vector_t) {getmaxy(stdscr), 0}, (vector_t) {-1, 1.2});
+    rocket_t rocket = CreateRocket(NUM_TRAILS, WHITE, 1, SHAPE, (vector_t) {getmaxy(stdscr), 0}, (vector_t) {-1, 1.2});
 
     while (rocket.life_span < 100)
     {
         clear();
-        UpdateRocket(&rocket, (vector_t){0.02, 0});
+        UpdateRocket(&rocket, GRAVITY);
         MoveRocket(&rocket);
         DrawRocket(&rocket);
-        nanosleep((const struct timespec[]){{0, 25000000L}}, NULL);
+        nanosleep((const struct timespec[]){{0, TIME_RATE}}, NULL);
         refresh();
     }
 

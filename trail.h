@@ -1,4 +1,7 @@
-#pragma once
+#ifndef TRAIL_H
+#define TRAIL_H
+
+
 
 #include "constants.h"
 
@@ -13,3 +16,7 @@ typedef struct Trail
 
     vector_t pos, vel, acc;
 } trail_t;
+
+
+
+#endif /* TRAIL_H */

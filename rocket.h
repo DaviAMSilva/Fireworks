@@ -1,4 +1,7 @@
-#pragma once
+#ifndef ROCKET_H
+#define ROCKET_H
+
+
 
 #include "constants.h"
 #include "trail.h"
@@ -17,4 +20,9 @@ typedef struct Rocket
 void MoveRocket(rocket_t *rocket);
 void UpdateRocket(rocket_t *rocket, const vector_t force);
 void DrawRocket(rocket_t *rocket);
-rocket_t CreateRocket(size_t num_trails, int color, char size, vector_t pos, vector_t vel);
+
+rocket_t CreateRocket(size_t num_trails, int color, char size, const char* shape, vector_t pos, vector_t vel);
+
+
+
+#endif /* ROCKET_H */

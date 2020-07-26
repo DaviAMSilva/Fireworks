@@ -13,6 +13,8 @@ typedef struct Rocket
     char stage;
     char size;
 
+    const char* shape;
+
     vector_t pos, vel, acc;
 } rocket_t;
 
@@ -39,13 +41,13 @@ void UpdateRocket(rocket_t *rocket, const vector_t force)
 void DrawRocket(rocket_t *rocket)
 {
     attron(COLOR_PAIR(rocket->color));
-    mvaddstr((int) rocket->pos.y, (int) rocket->pos.x, "⬤");
+    mvaddstr((int) rocket->pos.y, (int) rocket->pos.x, rocket->shape);
 }
 
-rocket_t CreateRocket(size_t num_trails, int color, char size, vector_t pos, vector_t vel)
+rocket_t CreateRocket(size_t num_trails, int color, char size, const char* shape, vector_t pos, vector_t vel)
 {
     trail_t *trails = calloc(num_trails, sizeof(trail_t));
     if (trails == NULL) return (rocket_t) {0};
 
-    return (rocket_t) { 0, trails, color, '1', size, pos, vel, { 0, 0 } };
+    return (rocket_t) { 0, trails, color, '1', size, shape, pos, vel, { 0, 0 } };
 }
