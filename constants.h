@@ -9,7 +9,7 @@ typedef struct Vector { double y, x; } vector_t;
 
 #define NUM_TRAILS 10
 
-#define ROCKET_LIFE_SPAN 100
+#define ROCKET_LIFE_SPAN 120
 #define TRAIL_LIFE_SPAN  100
 
 #define TIME_RATE 25000000L
@@ -18,7 +18,8 @@ typedef struct Vector { double y, x; } vector_t;
 #define TRAIL_RATE         50
 
 #define WHITE 1
-#define SHAPE "⬤"
+#define ROCKET_SHAPE "#"
+#define TRAIL_SHAPE  "*"
 
 #define GRAVITY (vector_t) {0.02, 0}
 
