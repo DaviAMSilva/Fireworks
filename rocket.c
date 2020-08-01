@@ -9,9 +9,9 @@ typedef struct Rocket
 {
     size_t life_span;
     trail_t *trails;
-    int color;
-    char stage;
-    char size;
+    short color;
+    size_t stage;
+    size_t type;
 
     const char* shape;
 
@@ -44,10 +44,15 @@ void DrawRocket(rocket_t *rocket)
     mvaddstr((int) rocket->pos.y, (int) rocket->pos.x, rocket->shape);
 }
 
-rocket_t CreateRocket(size_t num_trails, int color, char size, const char* shape, vector_t pos, vector_t vel)
+rocket_t CreateRocket(size_t num_trails, short color, size_t size, const char* shape, vector_t pos, vector_t vel)
 {
     trail_t *trails = calloc(num_trails, sizeof(trail_t));
     if (trails == NULL) return (rocket_t) {0};
 
     return (rocket_t) { 0, trails, color, '1', size, shape, pos, vel, { 0, 0 } };
+}
+
+void DestroyRocket(rocket_t *rocket)
+{
+    free(rocket->trails);
 }
