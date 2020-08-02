@@ -2,7 +2,7 @@ CC = gcc
 
 ODIR   = build
 TARGET = Fireworks
-LIBS   = -lncurses
+LIBS   = -lncurses -lm
 
 SOURCE 	= $(wildcard *.c)
 OBJECT  = $(patsubst %.c, $(ODIR)/%.o, $(SOURCE))

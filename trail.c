@@ -2,17 +2,20 @@
 #include <ncurses.h>
 #include <math.h>
 
-#include "constants.h"
+#include "vector.h"
 
 typedef struct Trail
 {
     size_t life_span;
-    int color;
-    char size;
+    short color;
 
     vector_t *history;
     size_t history_size;
     size_t history_count;
+
+    const char *shape;
+
+    size_t stage;
 
     vector_t pos, vel, acc;
 } trail_t;
@@ -43,13 +46,13 @@ void UpdateTrailHistory(trail_t *trail)
 void DrawTrail(trail_t *trail)
 {
     color_set(trail->color, NULL);
-    mvaddstr((int) trail->pos.y, (int) trail->pos.x, "|");
+    mvaddstr((int) trail->pos.y, (int) trail->pos.x, trail->shape);
 }
 
-trail_t CreateTrail(int color, char size, size_t history_size, vector_t pos, vector_t vel)
+trail_t CreateTrail(short color, const char *shape, size_t history_size, vector_t pos, vector_t vel)
 {
     vector_t *history = calloc(history_size, sizeof(vector_t));
     if (history == NULL) return (trail_t) {0};
 
-    return (trail_t) { 0, color, size, history, history_size, 0, pos, vel, (vector_t) { 0, 0 } };
+    return (trail_t) { 0, color, history, history_size, 0, shape, 0, pos, vel, (vector_t) { 0, 0 } };
 }
